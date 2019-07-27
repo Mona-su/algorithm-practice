@@ -37,3 +37,61 @@ public:
         head = list[0];
     }
 };
+
+
+// another soluction
+// time: 80.04%, space: 71.43
+// idea: reverse the second half of the linked list
+// then change the next pointer one by one (from both ends)
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        // count list length
+        int length = 0;
+        ListNode * temp = head;
+        while (temp != NULL){
+            length++;
+            temp = temp -> next;
+        }
+        
+        if (length > 2){
+            int halfLen = length/2;
+            ListNode *halfNode = NULL, *reversedHead = NULL;
+            
+            // find the middle node
+            temp = head;
+            for (int i = 0; i < halfLen; i++){
+                temp = temp -> next;    
+            }
+            
+            reversedHead = reverseList (temp);
+            
+            temp = head;
+            ListNode *reversedNext = reversedHead -> next, *next = temp -> next;
+            for (int i = 0; i < halfLen; i++){
+                temp -> next = reversedHead;
+                reversedHead -> next = next;
+                reversedHead = reversedNext;
+                reversedNext = reversedHead -> next;
+                temp = next;
+                next = temp -> next;
+            }
+            temp -> next = NULL;
+        }
+    }
+    
+    
+    ListNode* reverseList(ListNode* head){
+        ListNode *currNode = head -> next, *nextNode, *prevNode = head;
+        
+        while (currNode -> next != NULL){
+            nextNode = currNode -> next;
+            currNode -> next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        currNode -> next = prevNode;
+        
+        return currNode;
+    }
+};
