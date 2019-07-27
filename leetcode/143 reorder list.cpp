@@ -7,7 +7,7 @@
  * };
  */
 
-// time: 34.52%, space: 12.91
+// time: 34.52% O(N), space: 12.91 O(N)
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -40,7 +40,7 @@ public:
 
 
 // another soluction
-// time: 80.04%, space: 71.43
+// time: 80.04% O(n), space: 71.43 O(1)
 // idea: reverse the second half of the linked list
 // then change the next pointer one by one (from both ends)
 class Solution {
