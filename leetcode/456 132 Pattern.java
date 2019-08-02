@@ -32,19 +32,25 @@ class Solution {
         	}
         	else {
         		if (possibleRight.size() == 0 || nums[i] < possibleRight.get(0)) {
-        			possibleRight.add (nums[i]);
+        			possibleRight.add (0, nums[i]);
         		}
-        		
-                for (int j = 0; j < possibleRight.size(); j++) {
-                    if (nums[i] > possibleRight.get(j) && nums[minLeft[i]] < possibleRight.get(j)) {
-                        return true;
-                    }
-                    else if (nums[minLeft[i]] >= possibleRight.get(j)) {
-                        possibleRight.remove(j);
-                        j--;
-                    }
-                }
-        		
+        		else {
+        			for (int j = 0; j < possibleRight.size(); j++) {
+	                    if (nums[i] > possibleRight.get(j)) {
+	                    	if (nums[minLeft[i]] < possibleRight.get(j))
+		                        return true;
+		                    else {
+		                    	possibleRight.remove(j);
+	                        	j--;
+		                    }
+	                    }
+                        else {
+                            possibleRight.add (j, nums[i]);
+                            break;
+                        }
+        			}
+        			possibleRight.add(nums[i]);
+        		}
         	}
         }
 
