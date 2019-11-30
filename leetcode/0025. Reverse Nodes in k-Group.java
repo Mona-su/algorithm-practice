@@ -8,7 +8,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-// not a very good solution
+// time: O(n), one pass
+// space: O(1)
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null || k < 2 || head.next == null){

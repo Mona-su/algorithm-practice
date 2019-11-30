@@ -1,3 +1,7 @@
+// 309. Best Time to Buy and Sell Stock with Cooldown
+
+// multiple transactions with at least one day cooldown
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
